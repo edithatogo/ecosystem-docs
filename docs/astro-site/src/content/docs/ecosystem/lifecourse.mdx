@@ -1,0 +1,137 @@
+---
+title: Lifecourse — Microsimulation Engine
+description: A Python microsimulation engine for lifelong health and disease modelling with state-transition, discrete-event, and agent-based architectures.
+---
+
+import { Badge } from '@astrojs/starlight/components';
+import { CardGrid, Card } from '@astrojs/starlight/components';
+
+# Lifecourse
+
+<p style={{fontSize:'1.15rem', marginTop:0, opacity:0.85}}>
+  Microsimulation Engine for Health Economics and Disease Modelling
+</p>
+
+<div class="project-badges">
+  <Badge text="Python" variant="accent"/>
+  <Badge text="Microsimulation" variant="accent"/>
+  <Badge text="Health Economics" variant="accent"/>
+  <Badge text="State-Transition" variant="accent"/>
+  <Badge text="Agent-Based" variant="accent"/>
+  <Badge text="MIT License" variant="accent"/>
+</div>
+
+**Lifecourse** is a Python microsimulation engine for modelling individual patient trajectories across a full lifetime horizon. It supports multiple simulation paradigms — **state-transition (Markov) models**, **discrete-event simulation (DES)**, and **agent-based modelling (ABM)** — all within a unified, modular framework.
+
+Built for **health economics and outcomes research**, Lifecourse enables analysts to simulate complex disease progression, treatment pathways, and health outcomes at the individual level, with built-in support for costs, utilities, and uncertainty analysis.
+
+---
+
+## Key Features
+
+<ul class="feature-list">
+
+
+---
+
+## Quick Start
+
+```python
+from lifecourse import MicrosimulationModel, HealthState, Transition
+
+# Define health states
+healthy = HealthState("Healthy", cost=0, utility=1.0)
+sick = HealthState("Sick", cost=5000, utility=0.7)
+dead = HealthState("Dead", cost=0, utility=0.0, absorbing=True)
+
+# Define transitions
+healthy.add_transition(Transition(to=sick, rate=0.05))
+healthy.add_transition(Transition(to=dead, rate=0.01))
+sick.add_transition(Transition(to=dead, rate=0.08))
+
+# Create and run model
+model = MicrosimulationModel(
+    states=[healthy, sick, dead],
+    n_patients=10000,
+    time_horizon=40,  # years
+    cycle_length=1     # annual cycles
+)
+
+results = model.run()
+print(f"Mean total cost: ${results.mean_cost():.2f}")
+print(f"Mean QALYs: {results.mean_qalys():.2f}")
+print(f"ICER: ${results.icer():.2f}/QALY")
+```
+
+---
+
+## External Resources
+
+<div class="link-card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.75rem;">
+
+<a href="https://github.com/edithatogo/lifecourse" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">🐙</span>
+  <div>
+    <div class="link-card__title">GitHub Repository</div>
+    <div class="link-card__desc">Source code, issues, and model examples</div>
+  </div>
+</a>
+
+<a href="https://edithatogo.github.io/lifecourse" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">📖</span>
+  <div>
+    <div class="link-card__title">Full Documentation Site</div>
+    <div class="link-card__desc">User guide, API reference, tutorials, and model library</div>
+  </div>
+</a>
+
+<a href="https://pypi.org/project/lifecourse/" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">📦</span>
+  <div>
+    <div class="link-card__title">PyPI Package</div>
+    <div class="link-card__desc">pip install lifecourse</div>
+  </div>
+</a>
+
+</div>
+
+---
+
+## Simulation Paradigms
+
+| Paradigm | Best For | Lifecourse Module |
+|----------|----------|-------------------|
+| **State-Transition (Markov)** | Chronic disease with defined health states and fixed cycle lengths | `lifecourse.markov` |
+| **Microsimulation** | Individual patient histories with time-varying covariates | `lifecourse.microsim` |
+| **Discrete-Event Simulation (DES)** | Resource-constrained systems with queueing and events | `lifecourse.des` |
+| **Agent-Based Modelling (ABM)** | Interactions between heterogeneous agents | `lifecourse.abm` |
+
+---
+
+## When to Use Lifecourse
+
+| Use Case | Description |
+|----------|-------------|
+| **Cost-Effectiveness Analysis** | Full incremental cost-effectiveness analysis with PSA and CEACs |
+| **Disease Progression Modelling** | Simulate natural history of chronic diseases (CVD, diabetes, cancer) |
+| **Treatment Pathway Analysis** | Compare sequences of treatments over a patient's lifetime |
+| **Health Technology Assessment** | Generate evidence for HTA submissions (NICE, CADTH, PBAC) |
+| **Population Health Forecasting** | Project disease burden and healthcare resource utilisation |
+| **Value of Implementation** | Assess the value of improving implementation of existing interventions |
+
+---
+
+## Related Ecosystem Projects
+
+- **[Innovate](/ecosystem/innovate/)** — Use Innovate diffusion models to forecast treatment adoption rates for lifecourse model inputs
+- **[Voiage](/ecosystem/voiage/)** — Apply VOI analysis to lifecourse model outputs to determine the value of further research
+- **[Mars](/ecosystem/mars/)** — Preprocess real-world data time series with Mars for lifecourse model parameterisation
+  <li><strong>Multiple Simulation Paradigms</strong> — State-transition (Markov/microsimulation), discrete-event (DES), and agent-based (ABM) modelling in a single consistent framework.</li>
+  <li><strong>Individual Patient Simulation</strong> — Track full patient histories with time-varying covariates, competing risks, and event-dependent transitions.</li>
+  <li><strong>Flexible State Spaces</strong> — Define health states, disease stages, and absorbing states with arbitrary transition rules and time dependencies.</li>
+  <li><strong>Cost &amp; Utility Tracking</strong> — Built-in accumulation of costs and quality-adjusted life years (QALYs) with discounting and half-cycle correction.</li>
+  <li><strong>Parameter Uncertainty</strong> — Probabilistic sensitivity analysis (PSA) with correlated parameter sampling from arbitrary distributions.</li>
+  <li><strong>Population Heterogeneity</strong> — Individual-level covariates, risk equations, and treatment effect modifiers for realistic population modelling.</li>
+  <li><strong>Calibration Tools</strong> — Built-in support for model calibration to observed targets using optimisation and Bayesian methods.</li>
+  <li><strong>Export &amp; Interoperability</strong> — Results export to Pandas DataFrames, Apache Arrow, and Parquet for downstream analysis.</li>
+</ul>

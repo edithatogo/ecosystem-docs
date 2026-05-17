@@ -1,0 +1,148 @@
+---
+title: Starlight Polyglot — Multi-Language API Documentation
+description: An Astro + Starlight integration for generating polyglot API documentation from Python, TypeScript, Rust, R, Julia, C#, and Go source code.
+---
+
+import { Badge } from '@astrojs/starlight/components';
+import { CardGrid, Card } from '@astrojs/starlight/components';
+
+# Starlight Polyglot
+
+<p style={{fontSize:'1.15rem', marginTop:0, opacity:0.85}}>
+  Multi-Language API Documentation for Astro + Starlight
+</p>
+
+<div class="project-badges">
+  <Badge text="Astro" variant="accent"/>
+  <Badge text="Starlight" variant="accent"/>
+  <Badge text="Plugin" variant="accent"/>
+  <Badge text="Python" variant="accent"/>
+  <Badge text="TypeScript" variant="accent"/>
+  <Badge text="Rust" variant="accent"/>
+  <Badge text="R / Julia / C# / Go" variant="accent"/>
+  <Badge text="MIT License" variant="accent"/>
+</div>
+
+**Starlight Polyglot** is a plugin for [Astro's Starlight](https://starlight.astro.build/) that generates polyglot API documentation from multiple programming languages into a single, unified documentation site. One config, many languages.
+
+It powers the documentation for this entire ecosystem — enabling each project to expose its API reference across Python, TypeScript, Rust, R, Julia, C#, and Go from a single Starlight configuration.
+
+
+---
+
+## Quick Start
+
+```js
+// astro.config.mjs
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import polyglot from 'starlight-polyglot';
+
+export default defineConfig({
+  integrations: [
+    starlight({
+      title: 'My Project',
+      plugins: [
+        polyglot({
+          python: {
+            entryPoints: ['../../src/mylib'],
+            output: 'api/python',
+          },
+          typescript: {
+            entryPoints: ['../../src/index.ts'],
+            output: 'api/typescript',
+          },
+        }),
+      ],
+      sidebar: [
+        {
+          label: 'Python API',
+          autogenerate: { directory: 'api/python' },
+        },
+        {
+          label: 'TypeScript API',
+          autogenerate: { directory: 'api/typescript' },
+        },
+      ],
+    }),
+  ],
+});
+```
+
+---
+
+## External Resources
+
+<div class="link-card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.75rem;">
+
+<a href="https://github.com/edithatogo/starlight-polyglot" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">🐙</span>
+  <div>
+    <div class="link-card__title">GitHub Repository</div>
+    <div class="link-card__desc">Source code, issues, and plugin development</div>
+  </div>
+</a>
+
+<a href="https://edithatogo.github.io/starlight-polyglot" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">📖</span>
+  <div>
+    <div class="link-card__title">Full Documentation Site</div>
+    <div class="link-card__desc">Configuration reference, language support, handler development guide</div>
+  </div>
+</a>
+
+<a href="https://www.npmjs.com/package/starlight-polyglot" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">📦</span>
+  <div>
+    <div class="link-card__title">npm Package</div>
+    <div class="link-card__desc">npm install starlight-polyglot</div>
+  </div>
+</a>
+
+</div>
+
+---
+
+## Supported Languages
+
+| Language | Handler | Doc Tool | Status |
+|----------|---------|----------|--------|
+| Python | `starlight-polyglot/handlers/python` | pydoc / sphinx | ✅ Stable |
+| TypeScript | `starlight-polyglot/handlers/typescript` | TypeDoc | ✅ Stable |
+| Rust | `starlight-polyglot/handlers/rust` | rustdoc | ✅ Stable |
+| R | `starlight-polyglot/handlers/r` | roxygen2 | ✅ Stable |
+| Julia | `starlight-polyglot/handlers/julia` | Documenter.jl | ✅ Stable |
+| C# | `starlight-polyglot/handlers/csharp` | DocFX / VS XML | ✅ Stable |
+| Go | `starlight-polyglot/handlers/go` | go doc | ✅ Stable |
+
+---
+
+## When to Use Starlight Polyglot
+
+| Use Case | Description |
+|----------|-------------|
+| **Polyglot Libraries** | Your library has implementations in multiple languages and you want a single docs site |
+| **SDK Documentation** | Generate consistent API docs for SDKs shipped in different languages |
+| **Research Software** | Share HEOR tools with collaborators who use different programming languages |
+| **Internal Tooling** | Maintain a single documentation source for polyglot internal codebases |
+
+---
+
+## Related Ecosystem Projects
+
+- **[Voiage](/ecosystem/voiage/)** — Uses Starlight Polyglot for its 7-language API documentation
+- **[Innovate](/ecosystem/innovate/)** — Uses Starlight Polyglot for Python + Rust API documentation
+- This ecosystem site — Also powered by Starlight, showcasing the plugin's capabilities
+
+---
+
+## Key Features
+
+<ul class="feature-list">
+  <li><strong>Multi-Language Support</strong> — Generate API docs from Python (pydoc), TypeScript (TypeDoc), Rust (rustdoc), R (roxygen2), Julia (Documenter.jl), C# (DocFX), and Go (go doc).</li>
+  <li><strong>Unified Sidebar</strong> — All language APIs appear in a consistent Starlight sidebar with language-specific grouping.</li>
+  <li><strong>Language Tabs</strong> — Auto-generated language tabs let users switch between implementations of the same concept across languages.</li>
+  <li><strong>Cross-Language Links</strong> — Link to equivalent functions across languages — e.g., a Python `evpi()` links to the TypeScript `evpi()`. Hand-written documentation links to auto-generated API references.</li>
+  <li><strong>Pluggable Handlers</strong> — Each language has a handler that extracts documentation from source code. Custom handlers can be written for private/legacy codebases.</li>
+  <li><strong>Customisable Output</strong> — Control the output structure, navigation labels, and page templates.</li>
+</ul>

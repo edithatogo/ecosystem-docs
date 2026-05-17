@@ -1,0 +1,181 @@
+---
+title: Contributing Guide
+description: How to contribute to the edithatogo ecosystem — code, documentation, issues, and community guidelines.
+---
+
+import { Badge } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
+
+# Contributing Guide
+
+Thank you for your interest in contributing to the edithatogo ecosystem! This guide covers how to contribute to any project in the ecosystem, whether you're fixing a bug, adding a feature, writing documentation, or helping with community management.
+
+All projects in this ecosystem follow the same contribution guidelines.
+
+---
+
+## Code of Conduct
+
+All contributors are expected to abide by our **Code of Conduct** — be respectful, inclusive, and constructive. We welcome contributors of all backgrounds, experience levels, and identities.
+
+---
+
+## Ways to Contribute
+
+There are many ways to contribute beyond writing code:
+
+<ul class="feature-list">
+  <li><strong>🐛 Report Bugs</strong> — Open an issue with a clear description, reproduction steps, and environment details.</li>
+
+
+---
+
+## Getting Started
+
+### 1. Choose a Project
+
+Decide which project you'd like to contribute to:
+
+| Project | Languages | Primary Repo |
+|---------|-----------|-------------|
+| **Innovate** | Python, Rust | [github.com/edithatogo/innovate](https://github.com/edithatogo/innovate) |
+| **Voiage** | Python, R, Julia, TS, Go, Rust, .NET | [github.com/edithatogo/voiage](https://github.com/edithatogo/voiage) |
+| **Lifecourse** | Python | [github.com/edithatogo/lifecourse](https://github.com/edithatogo/lifecourse) |
+| **Mars** | Go | [github.com/edithatogo/mars](https://github.com/edithatogo/mars) |
+| **Starlight Polyglot** | TypeScript | [github.com/edithatogo/starlight-polyglot](https://github.com/edithatogo/starlight-polyglot) |
+| **Ecosystem Docs** | MDX, Astro | [github.com/edithatogo/ecosystem-docs](https://github.com/edithatogo/ecosystem-docs) |
+
+### 2. Find or Create an Issue
+
+- Check existing issues for something labelled `good first issue` or `help wanted`
+- If you're proposing a new feature, open an issue first to discuss before writing code
+
+### 3. Fork and Clone
+
+```bash
+git clone git@github.com:YOUR_USERNAME/project-name.git
+cd project-name
+git remote add upstream git@github.com:edithatogo/project-name.git
+```
+
+### 4. Set Up Development Environment
+
+Each project's repository has a `CONTRIBUTING.md` or `DEVELOPMENT.md` with specific setup instructions. Generally:
+
+<Tabs>
+  <TabItem label="Python Projects">
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -e ".[dev]"
+    ```
+  </TabItem>
+  <TabItem label="Go Projects">
+    ```bash
+    go mod download && go test ./...
+    ```
+  </TabItem>
+  <TabItem label="TypeScript / Astro">
+    ```bash
+    npm install && npm run dev
+    ```
+  </TabItem>
+  <TabItem label="Documentation Sites">
+
+
+---
+
+## Documentation Contributions
+
+Documentation improvements are especially welcome! Here's how to contribute to docs:
+
+### For Project Documentation
+
+Each project's docs are in `docs/astro-site/src/content/docs/` within that project's repository. They use **MDX** (Markdown with JSX) and **Starlight** components.
+
+```bash
+cd docs/astro-site && npm install && npm run dev
+```
+
+### For Ecosystem Documentation (this site)
+
+This central documentation site follows the same pattern:
+
+```bash
+cd /path/to/ecosystem-docs/docs/astro-site
+npm install
+npm run dev
+```
+
+Documentation pages support:
+
+- **Standard Markdown** — headings, lists, tables, code blocks
+- **Starlight Components** — `CardGrid`, `Card`, `Tabs`, `Steps`, `Badge`, etc.
+- **Frontmatter** — `title`, `description`, `template` (splash, full, default)
+- **Custom CSS classes** — `feature-list`, `link-card`, `project-badges`
+
+---
+
+## Pull Request Guidelines
+
+| Aspect | Guideline |
+|--------|-----------|
+| **Size** | Keep PRs focused on a single concern. Large changes should be broken into multiple PRs. |
+| **Tests** | Include tests for new code. Bug fixes should include a regression test. |
+| **Documentation** | Update docs for any API changes. New features should include usage examples. |
+| **Commit Messages** | Use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:` |
+| **Changelog** | Significant changes should be noted in the project's changelog. |
+| **CI** | All checks must pass before merging. |
+
+---
+
+## Release Process
+
+Releases are managed by the project maintainers. The typical process:
+
+1. Changes accumulate on `main`
+2. A release branch is created and tested
+3. Version is bumped following [Semantic Versioning](https://semver.org/)
+4. Release notes are compiled from changelog entries
+5. The package is published to the appropriate registry (PyPI, npm, Go module proxy, etc.)
+6. Documentation is deployed to GitHub Pages
+
+---
+
+## Questions?
+
+If you have questions about contributing, please:
+
+- Open a **Discussion** in the relevant repository
+- Ask in a relevant **Issue** (prefix with "Question:")
+- Reach out to the maintainers via GitHub
+
+Thank you for helping make this ecosystem better! 🎉
+    ```bash
+    cd docs/astro-site && npm install && npm run dev
+    ```
+  </TabItem>
+</Tabs>
+
+### 5. Make Your Changes
+
+- Follow the project's coding conventions and style
+- Write or update tests to cover your changes
+- Update documentation if your changes affect the public API
+- Keep pull requests focused — one feature or fix per PR
+
+### 6. Submit a Pull Request
+
+1. Push your changes to your fork
+2. Open a pull request against the `main` branch of the upstream repo
+3. Fill in the PR template with a clear description of your changes
+4. Link to any related issues
+5. Ensure CI passes (tests, linting, type checking)
+  <li><strong>💡 Suggest Features</strong> — Open a feature request issue describing the problem you want to solve.</li>
+  <li><strong>📝 Improve Documentation</strong> — Fix typos, clarify explanations, add examples, or translate docs.</li>
+  <li><strong>🔧 Submit Code</strong> — Fix bugs, implement features, or improve performance.</li>
+  <li><strong>🧪 Write Tests</strong> — Increase test coverage, add property-based tests, or create regression tests.</li>
+  <li><strong>📊 Add Examples</strong> — Create worked examples, tutorials, or Jupyter notebooks.</li>
+  <li><strong>🌐 Translations</strong> — Help translate documentation into other languages.</li>
+  <li><strong>💬 Community Support</strong> — Help answer questions in issues and discussions.</li>
+</ul>

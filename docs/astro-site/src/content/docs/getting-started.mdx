@@ -1,0 +1,168 @@
+---
+title: Getting Started
+description: Quick-start guide for the edithatogo ecosystem — install tools and run your first cross-project workflow.
+---
+
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
+import { Badge } from '@astrojs/starlight/components';
+
+# Getting Started
+
+This guide helps you get up and running with the edithatogo ecosystem. Whether you're a **health economist**, **data scientist**, or **developer**, you'll find the right path.
+
+---
+
+## Choose Your Path
+
+<div class="link-card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.75rem;">
+
+<div class="link-card">
+  <span class="link-card__icon">📈</span>
+  <div>
+    <div class="link-card__title">I want to model innovation diffusion</div>
+    <div class="link-card__desc">→ Start with <a href="/ecosystem-docs/ecosystem/innovate/">Innovate</a></div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">💰</span>
+  <div>
+    <div class="link-card__title">I want to compute Value of Information</div>
+    <div class="link-card__desc">→ Start with <a href="/ecosystem-docs/ecosystem/voiage/">Voiage</a></div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">🧬</span>
+  <div>
+    <div class="link-card__title">I want to build a microsimulation model</div>
+    <div class="link-card__desc">→ Start with <a href="/ecosystem-docs/ecosystem/lifecourse/">Lifecourse</a></div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">🪐</span>
+  <div>
+    <div class="link-card__title">I want to analyze time-series data in Go</div>
+    <div class="link-card__desc">→ Start with <a href="/ecosystem-docs/ecosystem/mars/">Mars</a></div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">🌐</span>
+  <div>
+    <div class="link-card__title">I want polyglot API documentation for my project</div>
+    <div class="link-card__desc">→ Start with <a href="/ecosystem-docs/ecosystem/starlight-polyglot/">Starlight Polyglot</a></div>
+  </div>
+</div>
+
+</div>
+
+---
+
+## Cross-Project Workflow
+
+The real power of this ecosystem comes from combining tools. Here's a typical **health economics workflow** that spans all projects:
+
+### Step 1: Import and Process Real-World Data
+
+Use **Mars** to clean and resample your real-world time-series data — for example, monthly prescription claims or hospital admission records.
+
+```go
+import "github.com/edithatogo/mars"
+
+claims := mars.Resample(rawClaims, mars.Downsample{Factor: 1, Method: mars.Sum})
+trend := mars.RollingMean(claims, 3)
+```
+
+### Step 2: Fit a Diffusion Model
+
+Pass the processed data to **Innovate** to fit a Bass diffusion model and forecast adoption curves.
+
+```python
+from innovate import fit_model, predict_model
+import pyarrow as pa
+
+# Read Mars-processed data via Arrow
+table = pa.ipc.open_file("claims.arrow").read_all()
+df = table.to_pandas()
+
+result = fit_model(df, model='bass', target_col='adoptions')
+forecast = predict_model(result, horizon=12)
+```
+
+### Step 3: Build a Microsimulation Model
+
+Use **Lifecourse** to simulate patient trajectories that incorporate the adoption forecasts as treatment uptake rates.
+
+```python
+from lifecourse import MicrosimulationModel
+
+model = MicrosimulationModel(
+    states=[...],
+    adoption_curve=forecast['predicted_adoptions'],
+    n_patients=50000
+)
+results = model.run()
+```
+
+### Step 4: Value of Information Analysis
+
+Use **Voiage** to compute the expected value of reducing uncertainty in your model parameters, informing research priorities.
+
+```python
+from voiage import evpi, evppi
+
+# Use lifecourse PSA outputs
+evpi_value = evpi(net_benefit_samples)
+```
+
+---
+
+## Installation Quick Reference
+
+<CardGrid>
+  <Card title="Innovate" icon="star">
+    ```bash
+    pip install innovate
+    ```
+    [Full docs →](https://edithatogo.github.io/innovate)
+  </Card>
+
+  <Card title="Voiage" icon="puzzle">
+    ```bash
+    pip install voiage
+    ```
+    [Full docs →](https://edithatogo.github.io/voiage)
+  </Card>
+
+  <Card title="Lifecourse" icon="puzzle">
+    ```bash
+    pip install lifecourse
+    ```
+    [Full docs →](https://edithatogo.github.io/lifecourse)
+  </Card>
+
+  <Card title="Mars" icon="planets">
+    ```bash
+    go get github.com/edithatogo/mars
+    ```
+    [Full docs →](https://edithatogo.github.io/mars)
+  </Card>
+
+  <Card title="Starlight Polyglot" icon="seti">
+    ```bash
+    npm install starlight-polyglot
+    ```
+    [Full docs →](https://edithatogo.github.io/starlight-polyglot)
+  </Card>
+</CardGrid>
+
+---
+
+## Next Steps
+
+- Browse the **[Ecosystem Overview](/ecosystem-docs/)** for a full description of each project
+- Read the **full documentation** for each project via the sidebar or external links above
+- Check the **[Contributing Guide](/ecosystem-docs/guides/contributing/)** if you'd like to get involved
+- Explore the [conductor](/ecosystem-docs/conductor/) for technical implementation details

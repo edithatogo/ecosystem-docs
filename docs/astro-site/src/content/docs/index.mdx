@@ -1,0 +1,192 @@
+---
+title: Ecosystem Documentation
+description: Central documentation hub for the edithatogo ecosystem — a suite of interoperable open-source tools for health economics, outcomes research, and data science.
+template: splash
+---
+
+import { CardGrid, Card, LinkCard, Tabs, TabItem, Steps } from '@astrojs/starlight/components';
+import { Badge } from '@astrojs/starlight/components';
+
+# 🌿 Ecosystem Documentation
+
+Welcome to the **edithatogo ecosystem** — a family of open-source libraries and tools designed for **health economics and outcomes research (HEOR)**, **data science**, and **cross-domain computation**.
+
+Each project in this ecosystem is independently useful, but they're designed to work together seamlessly. This central hub helps you discover, learn, and navigate across all projects.
+
+---
+
+## Projects
+
+<CardGrid>
+  <Card title="Innovate" icon="star">
+    A Python library for **innovation/policy diffusion modelling** — fit, forecast, and visualise adoption curves using Bass, Gompertz, logistic, and custom models. HEOR-ready with JAX, PyMC, and Bayesian backends.
+
+    <Badge text="Python" variant="accent"/> <Badge text="HEOR" variant="accent"/> <Badge text="Diffusion" variant="accent"/>
+
+    [Learn more →](/ecosystem/innovate/)
+  </Card>
+
+  <Card title="Voiage" icon="puzzle">
+    **Value of Information (VOI)** analysis across 7 programming languages — Python, R, Julia, TypeScript, Go, Rust, and .NET. Calculate EVPI, EVPPI, EVSI, and EVPPI-from-regression with multiple backends.
+
+    <Badge text="Polyglot" variant="accent"/> <Badge text="VOI" variant="accent"/> <Badge text="7 Languages" variant="accent"/>
+
+    [Learn more →](/ecosystem/voiage/)
+  </Card>
+
+  <Card title="Lifecourse" icon="puzzle">
+    A **microsimulation engine** for lifelong health and disease modelling — simulate individual patient trajectories across multiple disease states, interventions, and outcomes over a full lifetime horizon.
+
+    <Badge text="Microsimulation" variant="accent"/> <Badge text="Python" variant="accent"/> <Badge text="Health Economics" variant="accent"/>
+
+    [Learn more →](/ecosystem/lifecourse/)
+  </Card>
+
+  <Card title="Mars" icon="planets">
+    A **Go toolkit** for structured time-series data analysis — efficient, concurrent-safe, and designed for production-grade data pipelines. Features moving windows, resampling, and statistical decompositions.
+
+    <Badge text="Go" variant="accent"/> <Badge text="Time Series" variant="accent"/> <Badge text="Toolkit" variant="accent"/>
+
+    [Learn more →](/ecosystem/mars/)
+  </Card>
+
+  <Card title="Starlight Polyglot" icon="seti">
+    An **Astro + Starlight integration** that generates polyglot API documentation from multiple languages (Python, TypeScript, Rust, R, Julia, C#, Go) into a single unified docs site.
+
+    <Badge text="Astro" variant="accent"/> <Badge text="Starlight" variant="accent"/> <Badge text="Plugin" variant="accent"/>
+
+    [Learn more →](/ecosystem/starlight-polyglot/)
+  </Card>
+</CardGrid>
+
+
+---
+
+## Quick Links
+
+<div class="link-card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem;">
+
+<a href="/ecosystem-docs/getting-started/" class="link-card">
+  <span class="link-card__icon">🚀</span>
+  <div>
+    <div class="link-card__title">Get Started</div>
+    <div class="link-card__desc">Install tools and run your first analysis</div>
+  </div>
+</a>
+
+<a href="/ecosystem-docs/ecosystem/innovate/" class="link-card">
+  <span class="link-card__icon">📈</span>
+  <div>
+    <div class="link-card__title">Innovate Docs</div>
+    <div class="link-card__desc">Python diffusion modelling library</div>
+  </div>
+</a>
+
+<a href="/ecosystem-docs/ecosystem/voiage/" class="link-card">
+  <span class="link-card__icon">💰</span>
+  <div>
+    <div class="link-card__title">Voiage Docs</div>
+    <div class="link-card__desc">Cross-domain VOI analysis</div>
+  </div>
+</a>
+
+<a href="/ecosystem-docs/ecosystem/lifecourse/" class="link-card">
+  <span class="link-card__icon">🧬</span>
+  <div>
+    <div class="link-card__title">Lifecourse Docs</div>
+    <div class="link-card__desc">Microsimulation for health economics</div>
+  </div>
+</a>
+
+<a href="/ecosystem-docs/ecosystem/mars/" class="link-card">
+  <span class="link-card__icon">🪐</span>
+  <div>
+    <div class="link-card__title">Mars Docs</div>
+    <div class="link-card__desc">Go time-series toolkit</div>
+  </div>
+</a>
+
+<a href="/ecosystem-docs/ecosystem/starlight-polyglot/" class="link-card">
+  <span class="link-card__icon">🌐</span>
+  <div>
+    <div class="link-card__title">Starlight Polyglot Docs</div>
+    <div class="link-card__desc">Multi-language API documentation</div>
+  </div>
+</a>
+
+<a href="/ecosystem-docs/guides/contributing/" class="link-card">
+  <span class="link-card__icon">🤝</span>
+  <div>
+    <div class="link-card__title">Contributing</div>
+    <div class="link-card__desc">How to contribute to any ecosystem project</div>
+  </div>
+</a>
+
+</div>
+
+---
+
+## Ecosystem Principles
+
+The edithatogo ecosystem is built on a set of shared principles:
+
+| Principle | Description |
+|-----------|-------------|
+| **Interoperable by Design** | Projects share common data formats (Arrow, Parquet), naming conventions, and packaging strategies so they compose naturally. |
+| **Polyglot from Day One** | APIs are designed to map cleanly across languages — Python for research, Go for production, TypeScript for the web. |
+| **Health Economics First** | Each tool solves a real HEOR workflow: diffusion forecasting, value of information, patient-level simulation, and data pipeline management. |
+| **Open Science** | All projects are MIT-licensed. Documentation is built with Starlight and deployed to GitHub Pages. Contributions welcome. |
+
+## Technology Stack
+
+<div class="link-card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.75rem;">
+
+<div class="link-card">
+  <span class="link-card__icon">🐍</span>
+  <div>
+    <div class="link-card__title">Python</div>
+    <div class="link-card__desc">Innovate, Voiage, Lifecourse</div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">🔷</span>
+  <div>
+    <div class="link-card__title">TypeScript</div>
+    <div class="link-card__desc">Voiage, Starlight Polyglot</div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">🦀</span>
+  <div>
+    <div class="link-card__title">Rust</div>
+    <div class="link-card__desc">Voiage, Innovate (core)</div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">🔷</span>
+  <div>
+    <div class="link-card__title">Go</div>
+    <div class="link-card__desc">Mars, Voiage</div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">📊</span>
+  <div>
+    <div class="link-card__title">R / Julia / C#</div>
+    <div class="link-card__desc">Voiage</div>
+  </div>
+</div>
+
+<div class="link-card">
+  <span class="link-card__icon">⚡</span>
+  <div>
+    <div class="link-card__title">JAX / PyMC / Numba</div>
+    <div class="link-card__desc">Backend acceleration</div>
+  </div>
+</div>
+
+</div>

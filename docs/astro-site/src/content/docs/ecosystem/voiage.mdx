@@ -1,0 +1,148 @@
+---
+title: Voiage — Cross-Domain Value of Information Analysis
+description: Cross-domain Value of Information (VOI) analysis library for Python, R, Julia, TypeScript, Go, Rust, and .NET.
+---
+
+import { Badge } from '@astrojs/starlight/components';
+import { CardGrid, Card } from '@astrojs/starlight/components';
+
+# Voiage
+
+<p style={{fontSize:'1.15rem', marginTop:0, opacity:0.85}}>
+  Cross-Domain Value of Information Analysis — 7 Languages, One Library
+</p>
+
+<div class="project-badges">
+  <Badge text="Python" variant="accent"/>
+  <Badge text="R" variant="accent"/>
+  <Badge text="Julia" variant="accent"/>
+  <Badge text="TypeScript" variant="accent"/>
+  <Badge text="Go" variant="accent"/>
+  <Badge text="Rust" variant="accent"/>
+  <Badge text=".NET" variant="accent"/>
+  <Badge text="MIT License" variant="accent"/>
+</div>
+
+**Voiage** is a cross-domain **Value of Information (VOI)** analysis library that speaks seven programming languages. It provides a consistent, well-tested API for computing Expected Value of Perfect Information (EVPI), Expected Value of Partial Perfect Information (EVPPI), Expected Value of Sample Information (EVSI), and related metrics — whether you work in Python, R, Julia, TypeScript, Go, Rust, or .NET.
+
+
+---
+
+## Key Features
+
+<ul class="feature-list">
+  <li><strong>7 Language Implementations</strong> — Python, R, Julia, TypeScript, Go, Rust, and .NET with a unified API design across all languages.</li>
+  <li><strong>EVPI Calculation</strong> — Expected Value of Perfect Information using Monte Carlo simulation with multiple sampling strategies.</li>
+  <li><strong>EVPPI by Regression</strong> — Expected Value of Partial Perfect Information via Gaussian Process regression, spline models, and linear models.</li>
+  <li><strong>EVSI</strong> — Expected Value of Sample Information using nested Monte Carlo and moment-based methods.</li>
+  <li><strong>EVPPI from Regression</strong> — Advanced non-parametric regression methods for EVPPI estimation in high-dimensional parameter spaces.</li>
+  <li><strong>Multiple Backends</strong> — NumPy/SciPy, JAX, PyTorch, and pure Python implementations depending on your performance needs.</li>
+  <li><strong>Plots & Diagnostics</strong> — Built-in visualisation of VOI curves, expected loss, and population EVPI.</li>
+  <li><strong>CLI Tool</strong> — Command-line interface for running VOI analyses without writing code.</li>
+</ul>
+
+---
+
+## Quick Start
+
+```python
+import numpy as np
+from voiage import evpi, evppi
+
+# Simulate net benefit samples: 1000 samples x 3 treatment strategies
+n_samples = 1000
+n_strategies = 3
+nb = np.random.normal(loc=[100, 120, 110], scale=[30, 35, 32],
+                      size=(n_samples, n_strategies))
+
+# Calculate EVPI
+evpi_value = evpi(nb)
+print(f"EVPI: {evpi_value:.2f}")
+
+# Calculate EVPPI for one parameter of interest
+x = np.random.uniform(0, 1, n_samples)
+evppi_value = evppi(nb, x, method='gp')
+print(f"EVPPI: {evppi_value:.2f}")
+```
+
+---
+
+## External Resources
+
+<div class="link-card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.75rem;">
+
+
+
+---
+
+## Language Support
+
+| Language | Package Manager | Status |
+|----------|----------------|--------|
+| Python | pip / conda | ✅ Stable |
+| R | CRAN / remotes | ✅ Stable |
+| Julia | Julia Pkg | ✅ Stable |
+| TypeScript | npm | ✅ Stable |
+| Go | go get | ✅ Stable |
+| Rust | cargo | ✅ Stable |
+| .NET | NuGet | ✅ Stable |
+
+---
+
+## VOI Methods Reference
+
+| Method | Description | Implementation |
+|--------|-------------|----------------|
+| **EVPI** | Expected Value of Perfect Information | Monte Carlo integration over joint parameter distribution |
+| **EVPPI** | Expected Value of Partial Perfect Information | Gaussian Process regression, spline, linear models |
+| **EVSI** | Expected Value of Sample Information | Nested Monte Carlo, moment-based estimators |
+| **EVPPI (regression)** | Non-parametric EVPPI | GAM, GP, and random forest regression methods |
+| **Expected Loss** | Opportunity loss under current information | Calculated from net benefit distributions |
+| **Population EVPI** | Scaled EVPI for target population | Multiplies per-patient EVPI by population size |
+
+---
+
+## When to Use Voiage
+
+| Use Case | Description |
+|----------|-------------|
+| **Health Technology Appraisal** | Quantify the value of additional research before making reimbursement decisions |
+| **Clinical Trial Design** | Determine optimal sample size and endpoint selection for new trials |
+| **Research Prioritisation** | Rank research investments by their expected value of uncertainty reduction |
+| **Sensitivity Analysis** | Identify which parameters drive decision uncertainty and warrant further study |
+| **Multi-language Teams** | Collaborate across data science teams using different programming languages |
+
+---
+
+## Related Ecosystem Projects
+
+- **[Innovate](/ecosystem/voiage/)** — Use Voiage to compute the value of reducing uncertainty in diffusion model parameters
+- **[Lifecourse](/ecosystem/lifecourse/)** — Apply VOI methods to microsimulation model outputs for health economic evaluation
+- **[Mars](/ecosystem/mars/)** — Process time-series cost and effectiveness data with Mars before feeding into Voiage
+<a href="https://github.com/edithatogo/voiage" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">🐙</span>
+  <div>
+    <div class="link-card__title">GitHub Repository</div>
+    <div class="link-card__desc">Source code, issues, and polyglot implementations</div>
+  </div>
+</a>
+
+<a href="https://edithatogo.github.io/voiage" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">📖</span>
+  <div>
+    <div class="link-card__title">Full Documentation Site</div>
+    <div class="link-card__desc">Getting started, methods, API reference, examples, and developer guide</div>
+  </div>
+</a>
+
+<a href="https://pypi.org/project/voiage/" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">📦</span>
+  <div>
+    <div class="link-card__title">PyPI Package</div>
+    <div class="link-card__desc">pip install voiage</div>
+  </div>
+</a>
+
+</div>
+
+The library is designed for **health economics decision modelling**, **clinical trial design**, and any domain where you need to quantify the value of reducing uncertainty.

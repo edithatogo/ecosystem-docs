@@ -1,0 +1,144 @@
+---
+title: Mars — Go Time-Series Toolkit
+description: A Go toolkit for structured time-series data analysis with moving windows, resampling, and statistical decompositions.
+---
+
+import { Badge } from '@astrojs/starlight/components';
+import { CardGrid, Card } from '@astrojs/starlight/components';
+
+# Mars
+
+<p style={{fontSize:'1.15rem', marginTop:0, opacity:0.85}}>
+  Go Toolkit for Structured Time-Series Data Analysis
+</p>
+
+<div class="project-badges">
+  <Badge text="Go" variant="accent"/>
+  <Badge text="Time Series" variant="accent"/>
+  <Badge text="Concurrent" variant="accent"/>
+  <Badge text="Toolkit" variant="accent"/>
+  <Badge text="MIT License" variant="accent"/>
+</div>
+
+**Mars** is a Go toolkit for structured time-series data analysis. Designed for **production-grade data pipelines**, Mars provides efficient, concurrent-safe implementations of moving window operations, resampling, statistical decompositions, and signal processing primitives — all with a clean, composable API.
+
+Whether you're processing sensor data, financial time series, or healthcare monitoring streams, Mars gives you the building blocks to analyse temporal data at scale.
+
+---
+
+## Key Features
+
+
+
+---
+
+## Quick Start
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/edithatogo/mars"
+)
+
+func main() {
+    // Create a time series
+    data := []float64{10, 12, 15, 14, 18, 22, 21, 25, 28, 30}
+
+    // Compute a 3-period moving average
+    ma := mars.RollingMean(data, 3)
+    fmt.Println("Moving average:", ma)
+
+    // Perform additive seasonal decomposition
+    result := mars.Decompose(data, mars.Additive, 4)
+    fmt.Printf("Trend: %v\n", result.Trend)
+    fmt.Printf("Seasonal: %v\n", result.Seasonal)
+    fmt.Printf("Residual: %v\n", result.Residual)
+
+    // Resample from high to low frequency
+    resampled := mars.Resample(data, mars.Downsample{
+        Factor: 2,
+        Method: mars.Mean,
+    })
+    fmt.Println("Resampled:", resampled)
+}
+```
+
+---
+
+## External Resources
+
+<div class="link-card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.75rem;">
+
+<a href="https://github.com/edithatogo/mars" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">🐙</span>
+  <div>
+    <div class="link-card__title">GitHub Repository</div>
+    <div class="link-card__desc">Source code, issues, and Go module</div>
+  </div>
+</a>
+
+<a href="https://edithatogo.github.io/mars" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">📖</span>
+  <div>
+    <div class="link-card__title">Full Documentation Site</div>
+    <div class="link-card__desc">Getting started, API reference, and usage examples</div>
+  </div>
+</a>
+
+<a href="https://pkg.go.dev/github.com/edithatogo/mars" class="link-card" target="_blank" rel="noopener noreferrer">
+  <span class="link-card__icon">📚</span>
+  <div>
+    <div class="link-card__title">Go Package Documentation</div>
+    <div class="link-card__desc">Auto-generated Go doc with full type signatures</div>
+  </div>
+</a>
+
+</div>
+
+---
+
+## API Overview
+
+| Function | Description |
+|----------|-------------|
+| `RollingMean(data, window)` | Moving average with configurable window size |
+| `RollingStd(data, window)` | Rolling standard deviation |
+| `RollingApply(data, window, fn)` | Custom rolling aggregation |
+| `Resample(data, config)` | Frequency conversion with interpolation |
+| `Decompose(data, model, period)` | Seasonal-trend decomposition (STL-compatible) |
+| `ACF(data, maxLags)` | Autocorrelation function |
+| `PACF(data, maxLags)` | Partial autocorrelation function |
+| `ChangePoints(data, threshold)` | Change-point detection via PELT algorithm |
+| `WindowedStream(data, window, step)` | Streaming window iterator |
+
+---
+
+## When to Use Mars
+
+| Use Case | Description |
+|----------|-------------|
+| **Healthcare Data Pipelines** | Process streaming patient monitoring data with real-time aggregation |
+| **Financial Time Series** | Compute technical indicators, rolling statistics, and volatility measures |
+| **IoT Sensor Data** | Resample irregular sensor readings to regular intervals for analysis |
+| **Economic Indicators** | Seasonal adjustment and trend-cycle decomposition of economic time series |
+| **Preprocessing for ML** | Feature engineering on temporal data — lag features, rolling aggregates, and change indicators |
+
+---
+
+## Related Ecosystem Projects
+
+- **[Innovate](/ecosystem/innovate/)** — Use Mars to preprocess time-series adoption data before fitting diffusion models
+- **[Voiage](/ecosystem/voiage/)** — Mars can prepare time-series cost/effectiveness streams for VOI analysis
+- **[Lifecourse](/ecosystem/lifecourse/)** — Process real-world data with Mars for lifecourse model calibration and validation
+<ul class="feature-list">
+  <li><strong>Moving Window Operations</strong> — Rolling mean, median, standard deviation, min, max, sum, count, and custom aggregations over fixed or variable-width windows.</li>
+  <li><strong>Resampling &amp; Alignment</strong> — Upsample, downsample, and align irregular time series to regular grids with configurable interpolation methods (linear, forward-fill, backward-fill, nearest).</li>
+  <li><strong>Statistical Decompositions</strong> — Seasonal decomposition (additive/multiplicative), trend extraction, change-point detection, and autocorrelation functions.</li>
+  <li><strong>Concurrent-Safe Design</strong> — All operations are thread-safe by default, with parallelised implementations for CPU-bound workloads.</li>
+  <li><strong>Streaming API</strong> — Process data as it arrives with windowed stream operators and event-time semantics.</li>
+  <li><strong>Arrow &amp; Parquet Support</strong> — Native integration with Apache Arrow for zero-copy data interchange and columnar storage.</li>
+  <li><strong>Composable Pipelines</strong> — Chain operations together with a functional pipeline API that's easy to reason about and test.</li>
+  <li><strong>Minimal Dependencies</strong> — Pure Go standard library implementation with optional optimised backends.</li>
+</ul>
