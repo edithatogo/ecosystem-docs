@@ -15,7 +15,7 @@
     "astro": "latest",
     "starlight-links-validator": "latest",
     "starlight-llms-txt": "latest",
-    "starlight-polyglot": "file:/Users/doughnut/GitHub/starlight-polyglot/packages/starlight-polyglot",
+    "@edithatogo/starlight-polyglot": "file:/Users/doughnut/GitHub/starlight-polyglot/packages/starlight-polyglot",
     "typescript": "latest"
   }
 }
