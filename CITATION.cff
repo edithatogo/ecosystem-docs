@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: If you use this work, please cite it using these metadata and identify the
+  commit or release used.
+title: Ecosystem Documentation
+authors:
+- name: Ecosystem Documentation project
+repository-code: https://github.com/edithatogo/ecosystem-docs
+url: https://github.com/edithatogo/ecosystem-docs
+preferred-citation:
+  type: generic
+  title: Ecosystem Documentation
+  authors:
+  - name: Ecosystem Documentation project
+  url: https://github.com/edithatogo/ecosystem-docs
